@@ -7,7 +7,7 @@
 GRFID="4D 47 03 C1"
 REVISION=`hg id -n`
 #VERSION="3.r$REVISION"
-VERSION="1.1"
+VERSION="1.2"
 FILENAME="basecosts-presets"
 
 NFO="sprites/$FILENAME.nfo"
@@ -25,7 +25,7 @@ cat >$NFO <<EOF
     "http://wiki.openttdcoop.org/BaseCosts" 0D
     "Presets (Parameter):" 0D
     "default BaseCosts hard = 1" 0D
-    "Luukland easy = 2 / hard = 3" 0D
+    "Luukland hard = 2 / easy = 3" 0D
     "$CURDATE / GPL / Ammler" 00
 // first pair params:
   0 * 0 0D // ActionD <target> <operation> <source1> <source2> [<data>]
