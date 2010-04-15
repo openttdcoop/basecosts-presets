@@ -7,7 +7,7 @@
 GRFID="4D 47 03 C1"
 REVISION=`hg id -n`
 #VERSION="3.r$REVISION"
-VERSION="1.2"
+VERSION="1.4"
 FILENAME="basecosts-presets"
 
 NFO="sprites/$FILENAME.nfo"
@@ -26,6 +26,7 @@ cat >$NFO <<EOF
     "Presets (Parameter):" 0D
     "default BaseCosts hard = 1" 0D
     "Luukland hard = 2 / easy = 3" 0D
+    "Cadde hard = 4"
     "$CURDATE / GPL / Ammler" 00
 // first pair params:
   0 * 0 0D // ActionD <target> <operation> <source1> <source2> [<data>]
@@ -35,6 +36,7 @@ cat >$NFO <<EOF
     00          // source2: ignored
     \d1         // data
 
+// if param0 > 1
   0 * 0 09 // Action[07/09] <variable> <varsize> <condition-type> <value> <num-sprites>
     00          // Parameter 0
     01          // size
@@ -111,7 +113,8 @@ cat >$NFO <<EOF
 
 $GOTOEND
 
-// if parameter 0 not set
+// if parameter 0 > 2
+// Luukland hard
   0 * 0 09 // Action[07/09] <variable> <varsize> <condition-type> <value> <num-sprites>
     00          // Parameter 0
     01          // size
@@ -173,22 +176,24 @@ $GOTOEND
 \b11
 \b8
 \b8
+\b8
+\b8
+\b8
+\b8
+\b8
+\b8
+\b8
+\b8
+\b8
+\b8
 \b7
 \b8
-\b8
-\b8
-\b8
-\b8
-\b8
-\b8
-\b8
-\b8
-\b8
-\b8
+
 
 $GOTOEND
 
-// if parameter 0 not set
+// if parameter 0 > 3
+// Luukland easy
   0 * 0 09 // Action[07/09] <variable> <varsize> <condition-type> <value> <num-sprites>
     00          // Parameter 0
     01          // size
@@ -201,7 +206,6 @@ $GOTOEND
     01 \b60
     00          // ID (param0)
     08          // Basecosts
-
 \b8
 \b8
 \b6
@@ -250,22 +254,100 @@ $GOTOEND
 \b11
 \b8
 \b8
+\b8
+\b8
+\b8
+\b8
+\b8
+\b8
+\b8
+\b8
+\b8
+\b8
 \b7
-\b8
-\b8
-\b8
-\b8
-\b8
-\b8
-\b8
-\b8
-\b8
-\b8
 \b8
 
 $GOTOEND
 
+// if parameter 0 > 4
+// Cadde hard
+  0 * 0 09 // Action[07/09] <variable> <varsize> <condition-type> <value> <num-sprites>
+    00          // Parameter 0
+    01          // size
+    \7>         // condition: equal to
+    \b4
+    02        // skip next 2
+
+  0 * 0 00 // Action0 <Feature> <Num-props> <Num-info> <Id> (<Property <New-info>)...
+    08          // Properties for general variables
+    01 \b60
+    00          // ID (param0)
+    08          // Basecosts
+\b8
+\b9
+\b9
+\b10
+\b10
+\b9
+\b9
+\b9
+\b10
+\b9
+\b9
+\b13
+\b9
+\b9
+\b9
+\b9
+\b9
+\b10
+\b9
+\b10
+\b11
+\b10
+\b8
+\b8
+\b8
+\b8
+\b9
+\b8
+\b8
+\b9
+\b9
+\b9
+\b9
+\b8
+\b9
+\b9
+\b12
+\b9
+\b9
+\b9
+\b9
+\b8
+\b9
+\b9
+\b9
+\b10
+\b9
+\b9
+\b9
+\b9
+\b8
+\b8
+\b8
+\b8
+\b8
+\b8
+\b9
+\b8
+\b9
+\b9
+
+$GOTOEND
 EOF
+
+
 
 renum $NFO
 grfcodec -e $FILENAME.grf
