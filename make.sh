@@ -19,13 +19,37 @@ cat >$NFO <<EOF
 // (Info version 7)
 // Format: spritenum pcxfile xpos ypos compression ysize xsize xrel yrel
   0 * 4 00 00 00 00
+
+ -1 * 0  14 "C" "INFO"
+                  "B" "PALS" \w1 "A"
+                  "B" "VRSN" \w4 \d$REVISION
+                  "B" "NPAR" \w1 \b1
+                  "C" "PARA"
+                      "C" \d0
+                          "T" "NAME" 7F "BaseCosts Set" 00
+                          "T" "DESC" 7F "Chose one of the presets:" 0D
+                            "BaseCosts hard (default) - Luukland hard/easy - Cadde hard" 00
+                          "B" "TYPE" \w1 \b0
+                          "B" "LIMI" \w8 \d1 \d4
+                          "C" "VALU"
+                              "T" \d1 7F "BaseCosts hard (default)" 00
+                              "T" \d2 7F "Luukland hard" 00
+                              "T" \d3 7F "Luukland easy" 00
+                              "T" \d4 7F "Cadde hard" 00
+                              00
+                          00
+                      00
+                  00
+            00
+
   0 * 0	08 07 $GRFID "BaseCosts Mod Presets $VERSION" 00
     "http://wiki.openttdcoop.org/BaseCosts" 0D
     "Presets (Parameter):" 0D
     "default BaseCosts hard = 1" 0D
     "Luukland hard = 2 / easy = 3" 0D
-    "Cadde hard = 4"
+    "Cadde hard = 4" 0D
     "$VERDATE / GPL / Ammler" 00
+
 // first pair params:
   0 * 0 0D // ActionD <target> <operation> <source1> <source2> [<data>]
     00          // Parameter 0
