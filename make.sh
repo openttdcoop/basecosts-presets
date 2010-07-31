@@ -11,7 +11,6 @@ FILENAME="basecosts-presets"
 
 NFO="sprites/$FILENAME.nfo"
 [ ! -d "sprites" ] && mkdir sprites
-CURDATE=$(date --rfc-3339=date)
 
 GOTOEND="0 * 0 09 9A 01 \71 \b1 00"
 
@@ -26,7 +25,7 @@ cat >$NFO <<EOF
     "default BaseCosts hard = 1" 0D
     "Luukland hard = 2 / easy = 3" 0D
     "Cadde hard = 4"
-    "$CURDATE / GPL / Ammler" 00
+    "$VERDATE / GPL / Ammler" 00
 // first pair params:
   0 * 0 0D // ActionD <target> <operation> <source1> <source2> [<data>]
     00          // Parameter 0
